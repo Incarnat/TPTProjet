@@ -147,7 +147,7 @@ int main(int argc, char* argv[])
 {
 	try
 	{
-		if (argc != 2)
+		if (argc < 2)
 		{
 			std::cerr << "Usage: async_tcp_echo_server <port>\n";
 			return 1;
