@@ -24,13 +24,15 @@
 							<tool id="cdt.managedbuild.tool.gnu.cross.c.compiler.767227661" name="Cross GCC Compiler" superClass="cdt.managedbuild.tool.gnu.cross.c.compiler">
 								<option defaultValue="gnu.c.optimization.level.none" id="gnu.c.compiler.option.optimization.level.708523872" name="Optimization Level" superClass="gnu.c.compiler.option.optimization.level" valueType="enumerated"/>
 								<option id="gnu.c.compiler.option.debugging.level.1513366419" name="Debug Level" superClass="gnu.c.compiler.option.debugging.level" value="gnu.c.debugging.level.max" valueType="enumerated"/>
+								<option id="gnu.c.compiler.option.include.paths.1262648371" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" valueType="includePath"/>
 								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.625252636" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
 							</tool>
 							<tool id="cdt.managedbuild.tool.gnu.cross.cpp.compiler.1243327356" name="Cross G++ Compiler" superClass="cdt.managedbuild.tool.gnu.cross.cpp.compiler">
 								<option id="gnu.cpp.compiler.option.optimization.level.1282257784" name="Optimization Level" superClass="gnu.cpp.compiler.option.optimization.level" value="gnu.cpp.compiler.optimization.level.none" valueType="enumerated"/>
 								<option id="gnu.cpp.compiler.option.debugging.level.144525105" name="Debug Level" superClass="gnu.cpp.compiler.option.debugging.level" value="gnu.cpp.compiler.debugging.level.max" valueType="enumerated"/>
 								<option id="gnu.cpp.compiler.option.include.paths.1063149656" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TPTserver/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TPTserver/libodb/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TPTserver/libodbmysql/include}&quot;"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.210087923" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 							</tool>
@@ -40,6 +42,7 @@
 									<listOptionValue builtIn="false" srcPrefixMapping="" srcRootPath="" value="pthread"/>
 									<listOptionValue builtIn="false" srcPrefixMapping="" srcRootPath="" value="boost_system"/>
 								</option>
+								<option id="gnu.cpp.link.option.paths.46172802" name="Library search path (-L)" superClass="gnu.cpp.link.option.paths" valueType="libPaths"/>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.linker.input.172774085" superClass="cdt.managedbuild.tool.gnu.cpp.linker.input">
 									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
 									<additionalInput kind="additionalinput" paths="$(LIBS)"/>
@@ -51,6 +54,31 @@
 							</tool>
 						</toolChain>
 					</folderInfo>
+					<fileInfo id="cdt.managedbuild.config.gnu.cross.exe.debug.1401527786.231227839" name="mouvement.h" rcbsApplicability="override" resourcePath="src/mouvement.h" toolsToInvoke="org.eclipse.cdt.managedbuilder.ui.rcbs.1770370712">
+						<tool command="" commandLinePattern="${COMMAND} ${FLAGS} ${OUTPUT_FLAG} ${OUTPUT_PREFIX}${OUTPUT} ${INPUTS}" id="org.eclipse.cdt.managedbuilder.ui.rcbs.1886056758" name="Resource Custom Build Step"/>
+						<tool announcement="compiling mouvement.h" command="../odb-compiler/bin/odb --database mysql --generate-query mouvement.h" customBuildStep="true" id="org.eclipse.cdt.managedbuilder.ui.rcbs.1770370712" name="Resource Custom Build Step">
+							<inputType id="org.eclipse.cdt.managedbuilder.ui.rcbs.inputtype.301759790" name="Resource Custom Build Step Input Type">
+								<additionalInput kind="additionalinputdependency" paths=""/>
+							</inputType>
+							<outputType id="org.eclipse.cdt.managedbuilder.ui.rcbs.outputtype.12881322" name="Resource Custom Build Step Output Type" outputNames="mouvement-odb.hxx;mouvement-odb.cxx;mouvement-odb.ixx;mouvement.sql"/>
+						</tool>
+					</fileInfo>
+					<fileInfo id="cdt.managedbuild.config.gnu.cross.exe.debug.1401527786.1320695387" name="point.h" rcbsApplicability="override" resourcePath="src/point.h" toolsToInvoke="org.eclipse.cdt.managedbuilder.ui.rcbs.1517697136">
+						<tool announcement="compiling point.h" command="../odb-compiler/bin/odb --database mysql --generate-query --output-dir .. point.h" customBuildStep="true" id="org.eclipse.cdt.managedbuilder.ui.rcbs.1517697136" name="Resource Custom Build Step">
+							<inputType id="org.eclipse.cdt.managedbuilder.ui.rcbs.inputtype.1309049823" name="Resource Custom Build Step Input Type">
+								<additionalInput kind="additionalinputdependency" paths=""/>
+							</inputType>
+							<outputType id="org.eclipse.cdt.managedbuilder.ui.rcbs.outputtype.1331758054" name="Resource Custom Build Step Output Type" outputNames="../point-odb.hxx;../point-odb.cxx;../point-odb.ixx;../point.sql"/>
+						</tool>
+					</fileInfo>
+					<fileInfo id="cdt.managedbuild.config.gnu.cross.exe.debug.1401527786.574435079" name="utilisateur.h" rcbsApplicability="override" resourcePath="src/utilisateur.h" toolsToInvoke="org.eclipse.cdt.managedbuilder.ui.rcbs.476171436">
+						<tool announcement="compiling utilisateur.h" command="../odb-compiler/bin/odb --database mysql --generate-query --output-dir .. utilisateur.h" customBuildStep="true" id="org.eclipse.cdt.managedbuilder.ui.rcbs.476171436" name="Resource Custom Build Step">
+							<inputType id="org.eclipse.cdt.managedbuilder.ui.rcbs.inputtype.945990432" name="Resource Custom Build Step Input Type">
+								<additionalInput kind="additionalinputdependency" paths=""/>
+							</inputType>
+							<outputType id="org.eclipse.cdt.managedbuilder.ui.rcbs.outputtype.750586328" name="Resource Custom Build Step Output Type" outputNames="../utilisateur-odb.hxx;../utilisateur-odb.cxx;../utilisateur-odb.ixx;../utilisateur.sql"/>
+						</tool>
+					</fileInfo>
 					<sourceEntries>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
 					</sourceEntries>
@@ -99,6 +127,30 @@
 							</tool>
 						</toolChain>
 					</folderInfo>
+					<fileInfo id="cdt.managedbuild.config.gnu.cross.exe.release.1123257594.169277066" name="mouvement.h" rcbsApplicability="override" resourcePath="src/mouvement.h" toolsToInvoke="org.eclipse.cdt.managedbuilder.ui.rcbs.1886056758">
+						<tool announcement="compiling mouvement.h" command="../odb-compiler/bin/odb --database mysql --generate-query --output-dir .. mouvement.h" customBuildStep="true" id="org.eclipse.cdt.managedbuilder.ui.rcbs.1886056758" name="Resource Custom Build Step">
+							<inputType id="org.eclipse.cdt.managedbuilder.ui.rcbs.inputtype.173134020" name="Resource Custom Build Step Input Type">
+								<additionalInput kind="additionalinputdependency" paths=""/>
+							</inputType>
+							<outputType id="org.eclipse.cdt.managedbuilder.ui.rcbs.outputtype.380444332" name="Resource Custom Build Step Output Type" outputNames="../mouvement-odb.hxx;../mouvement-odb.cxx;../mouvement-odb.ixx;../mouvement.sql"/>
+						</tool>
+					</fileInfo>
+					<fileInfo id="cdt.managedbuild.config.gnu.cross.exe.release.1123257594.1007056407" name="point.h" rcbsApplicability="disable" resourcePath="src/point.h" toolsToInvoke="">
+						<tool customBuildStep="true" id="org.eclipse.cdt.managedbuilder.ui.rcbs.777573032" name="Resource Custom Build Step">
+							<inputType id="org.eclipse.cdt.managedbuilder.ui.rcbs.inputtype.1381768502" name="Resource Custom Build Step Input Type">
+								<additionalInput kind="additionalinputdependency" paths=""/>
+							</inputType>
+							<outputType id="org.eclipse.cdt.managedbuilder.ui.rcbs.outputtype.950222874" name="Resource Custom Build Step Output Type"/>
+						</tool>
+					</fileInfo>
+					<fileInfo id="cdt.managedbuild.config.gnu.cross.exe.release.1123257594.281510677" name="utilisateur.h" rcbsApplicability="disable" resourcePath="src/utilisateur.h" toolsToInvoke="">
+						<tool customBuildStep="true" id="org.eclipse.cdt.managedbuilder.ui.rcbs.2118984337" name="Resource Custom Build Step">
+							<inputType id="org.eclipse.cdt.managedbuilder.ui.rcbs.inputtype.1796480366" name="Resource Custom Build Step Input Type">
+								<additionalInput kind="additionalinputdependency" paths=""/>
+							</inputType>
+							<outputType id="org.eclipse.cdt.managedbuilder.ui.rcbs.outputtype.608438173" name="Resource Custom Build Step Output Type"/>
+						</tool>
+					</fileInfo>
 					<sourceEntries>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
 					</sourceEntries>
@@ -110,24 +162,12 @@
 	<storageModule moduleId="cdtBuildSystem" version="4.0.0">
 		<project id="TPTserver.cdt.managedbuild.target.gnu.cross.exe.252347128" name="Executable" projectType="cdt.managedbuild.target.gnu.cross.exe"/>
 	</storageModule>
-	<storageModule moduleId="scannerConfiguration">
-		<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
-		<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.cross.exe.debug.1401527786;cdt.managedbuild.config.gnu.cross.exe.debug.1401527786.;cdt.managedbuild.tool.gnu.cross.cpp.compiler.1243327356;cdt.managedbuild.tool.gnu.cpp.compiler.input.210087923">
-			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="org.eclipse.cdt.managedbuilder.core.GCCManagedMakePerProjectProfileCPP"/>
-		</scannerConfigBuildInfo>
-		<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.cross.exe.release.1123257594;cdt.managedbuild.config.gnu.cross.exe.release.1123257594.;cdt.managedbuild.tool.gnu.cross.cpp.compiler.1320138668;cdt.managedbuild.tool.gnu.cpp.compiler.input.1985026789">
-			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="org.eclipse.cdt.managedbuilder.core.GCCManagedMakePerProjectProfileCPP"/>
-		</scannerConfigBuildInfo>
-		<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.cross.exe.debug.1401527786;cdt.managedbuild.config.gnu.cross.exe.debug.1401527786.;cdt.managedbuild.tool.gnu.cross.c.compiler.767227661;cdt.managedbuild.tool.gnu.c.compiler.input.625252636">
-			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="org.eclipse.cdt.managedbuilder.core.GCCManagedMakePerProjectProfileC"/>
-		</scannerConfigBuildInfo>
-		<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.cross.exe.release.1123257594;cdt.managedbuild.config.gnu.cross.exe.release.1123257594.;cdt.managedbuild.tool.gnu.cross.c.compiler.737596057;cdt.managedbuild.tool.gnu.c.compiler.input.319893020">
-			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="org.eclipse.cdt.managedbuilder.core.GCCManagedMakePerProjectProfileC"/>
-		</scannerConfigBuildInfo>
-	</storageModule>
 	<storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
 	<storageModule moduleId="refreshScope" versionNumber="2">
 		<configuration configurationName="Release">
+			<resource resourceType="PROJECT" workspacePath="/TPTserver"/>
+		</configuration>
+		<configuration configurationName="Multiple configurations">
 			<resource resourceType="PROJECT" workspacePath="/TPTserver"/>
 		</configuration>
 		<configuration configurationName="Debug">
@@ -135,4 +175,22 @@
 		</configuration>
 	</storageModule>
 	<storageModule moduleId="org.eclipse.cdt.internal.ui.text.commentOwnerProjectMappings"/>
+	<storageModule moduleId="scannerConfiguration">
+		<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
+		<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.cross.exe.debug.1401527786;cdt.managedbuild.config.gnu.cross.exe.debug.1401527786.;cdt.managedbuild.tool.gnu.cross.cpp.compiler.1243327356;cdt.managedbuild.tool.gnu.cpp.compiler.input.210087923">
+			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="org.eclipse.cdt.managedbuilder.core.GCCManagedMakePerProjectProfileCPP"/>
+		</scannerConfigBuildInfo>
+		<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.cross.exe.debug.1401527786;cdt.managedbuild.config.gnu.cross.exe.debug.1401527786.;cdt.managedbuild.tool.gnu.cross.c.compiler.767227661;cdt.managedbuild.tool.gnu.c.compiler.input.625252636">
+			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="org.eclipse.cdt.managedbuilder.core.GCCManagedMakePerProjectProfileC"/>
+		</scannerConfigBuildInfo>
+		<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.cross.exe.release.1123257594;cdt.managedbuild.config.gnu.cross.exe.release.1123257594.;cdt.managedbuild.tool.gnu.cross.cpp.compiler.1320138668;cdt.managedbuild.tool.gnu.cpp.compiler.input.1985026789">
+			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="org.eclipse.cdt.managedbuilder.core.GCCManagedMakePerProjectProfileCPP"/>
+		</scannerConfigBuildInfo>
+		<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.cross.exe.release.1123257594;cdt.managedbuild.config.gnu.cross.exe.release.1123257594.;cdt.managedbuild.tool.gnu.cross.c.compiler.737596057;cdt.managedbuild.tool.gnu.c.compiler.input.319893020">
+			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="org.eclipse.cdt.managedbuilder.core.GCCManagedMakePerProjectProfileC"/>
+		</scannerConfigBuildInfo>
+	</storageModule>
+	<storageModule moduleId="org.eclipse.cdt.make.core.buildtargets">
+		<buildTargets/>
+	</storageModule>
 </cproject>

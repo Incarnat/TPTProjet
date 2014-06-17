@@ -9,12 +9,12 @@ using namespace std;
 class Utilisateur
 {
 protected:
-#pragma db id auto
     int id;
     string type;
     string marqueMachine;
+    friend class odb::access;
 public:
     Utilisateur();
 };
-
+#pragma db member(Utilisateur::id) id
 #endif // UTILISATEUR_H
