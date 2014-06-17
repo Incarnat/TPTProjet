@@ -45,6 +45,8 @@
 								<option id="gnu.cpp.link.option.libs.1968885227" name="Libraries (-l)" superClass="gnu.cpp.link.option.libs" valueType="libs">
 									<listOptionValue builtIn="false" srcPrefixMapping="" srcRootPath="" value="pthread"/>
 									<listOptionValue builtIn="false" srcPrefixMapping="" srcRootPath="" value="boost_system"/>
+									<listOptionValue builtIn="false" srcPrefixMapping="" srcRootPath="" value="odb"/>
+									<listOptionValue builtIn="false" srcPrefixMapping="" srcRootPath="" value="odb-mysql"/>
 								</option>
 								<option id="gnu.cpp.link.option.userobjs.239958027" name="Other objects" superClass="gnu.cpp.link.option.userobjs" valueType="userObjs">
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/src/point-odb.o}&quot;"/>

@@ -19,11 +19,12 @@
 #include "TPTServer.hpp"
 
 using boost::asio::ip::tcp;
+using namespace odb::core;
 
-class session
+class Mysession
 {
 public:
-	session(boost::asio::io_service& io_service)
+	Mysession(boost::asio::io_service& io_service)
 	: socket_(io_service)
 	{
 	}
@@ -40,7 +41,7 @@ public:
 
 		outputname << now << ".zip";
 		socket_.async_read_some(boost::asio::buffer(data_, max_length),
-				boost::bind(&session::handle_read, this,
+				boost::bind(&Mysession::handle_read, this,
 						boost::asio::placeholders::error,
 						boost::asio::placeholders::bytes_transferred));
 
@@ -57,7 +58,7 @@ private:
 
 			outputFile << std::string(data_, bytes_transferred);
 			socket_.async_read_some(boost::asio::buffer(data_, max_length),
-					boost::bind(&session::handle_read, this,
+					boost::bind(&Mysession::handle_read, this,
 							boost::asio::placeholders::error,
 							boost::asio::placeholders::bytes_transferred));
 		}
@@ -87,7 +88,7 @@ private:
 		if (!error)
 		{
 			socket_.async_read_some(boost::asio::buffer(data_, max_length),
-					boost::bind(&session::handle_read, this,
+					boost::bind(&Mysession::handle_read, this,
 							boost::asio::placeholders::error,
 							boost::asio::placeholders::bytes_transferred));
 
@@ -117,13 +118,13 @@ public:
 private:
 	void start_accept()
 	{
-		session* new_session = new session(io_service_);
+		Mysession* new_session = new Mysession(io_service_);
 		acceptor_.async_accept(new_session->socket(),
 				boost::bind(&server::handle_accept, this, new_session,
 						boost::asio::placeholders::error));
 	}
 
-	void handle_accept(session* new_session,
+	void handle_accept(Mysession* new_session,
 			const boost::system::error_code& error)
 	{
 		if (!error)
@@ -157,7 +158,9 @@ int main(int argc, char* argv[])
 
 		using namespace std; // For atoi.
 		server s(io_service, atoi(argv[1]));
-
+		//ODB
+		auto_ptr<database> db (new odb::mysql::database (argc, argv));
+		transaction t (db->begin ());
 		io_service.run();
 //		FileReader* fileR=new FileReader();
 //		fileR->readFile("lol.csv");

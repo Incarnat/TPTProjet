@@ -21,5 +21,10 @@
 #include "Unzipper.h"
 #include "FileReader.h"
 
+#include <memory>   // std::auto_ptr
+#include <odb/database.hxx>
+#include <odb/transaction.hxx>
+#include <odb/mysql/database.hxx>
+
 
 #endif /* TPTSERVER_HPP_ */
