@@ -45,7 +45,7 @@ all: TPTServer
 TPTServer: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: Cross G++ Linker'
-	g++ -L"/cal/homes/noret/git/TPTServer/TPTServer/libodb/lib" -L"/cal/homes/noret/git/TPTServer/TPTServer/libodbmysql/lib" -o "TPTServer" $(OBJS) $(USER_OBJS) $(LIBS)
+	g++ -L"/cal/homes/noret/git/TPTServer/TPTServer/libodb/lib" -L"/cal/homes/noret/git/TPTServer/TPTServer/libodbmysql/lib" -Xlinker -rpath /cal/homes/noret/git/TPTServer/TPTServer/libodb/lib -Xlinker -rpath /cal/homes/noret/git/TPTServer/TPTServer/libodbmysql/lib -o "TPTServer" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 

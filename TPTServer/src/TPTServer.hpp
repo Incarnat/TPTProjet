@@ -20,6 +20,8 @@
 #include "odb.hpp"
 #include "Unzipper.h"
 #include "FileReader.h"
+#include "utilisateur.h"
+#include "utilisateur-odb.hxx"
 
 #include <memory>   // std::auto_ptr
 #include <odb/database.hxx>

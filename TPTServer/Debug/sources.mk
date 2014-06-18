@@ -23,6 +23,7 @@ C_UPPER_DEPS :=
 
 # Every subdirectory with source files must be described here
 SUBDIRS := \
+. \
 src \
 odb-compiler/lib/odb/x86_64-linux-gnu/lib64/gcc/x86_64-linux-gnu/4.7.3 \
 

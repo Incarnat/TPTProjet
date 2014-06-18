@@ -161,9 +161,13 @@ int main(int argc, char* argv[])
 		//ODB
 		auto_ptr<database> db (new odb::mysql::database (argc, argv));
 		transaction t (db->begin ());
-		io_service.run();
-//		FileReader* fileR=new FileReader();
-//		fileR->readFile("lol.csv");
+		Utilisateur u(5,"false","lolbook");
+		unsigned long u_id=db->persist(u);
+		cout << u_id;
+		t.commit ();
+	//	io_service.run();
+		//FileReader* fileR=new FileReader();
+		//fileR->readFile("/cal/homes/noret/git/TPTServer/TPTServer/lol.csv");
 
 	}
 	catch (std::exception& e)

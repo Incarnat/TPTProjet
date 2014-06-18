@@ -51,11 +51,16 @@
 								<option id="gnu.cpp.link.option.userobjs.239958027" name="Other objects" superClass="gnu.cpp.link.option.userobjs" valueType="userObjs">
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/src/point-odb.o}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/src/mouvement-odb.o}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/src/utilisateur-odb.o}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/utilisateur-odb.o}&quot;"/>
 								</option>
 								<option id="gnu.cpp.link.option.paths.1628677420" name="Library search path (-L)" superClass="gnu.cpp.link.option.paths" valueType="libPaths">
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TPTServer/libodb/lib}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TPTServer/libodbmysql/lib}&quot;"/>
+								</option>
+								<option id="gnu.cpp.link.option.flags.1119576582" name="Linker flags" superClass="gnu.cpp.link.option.flags" value="" valueType="string"/>
+								<option id="gnu.cpp.link.option.other.648243154" name="Other options (-Xlinker [option])" superClass="gnu.cpp.link.option.other" valueType="stringList">
+									<listOptionValue builtIn="false" value="-rpath ${workspace_loc:/${ProjName}/libodb/lib}"/>
+									<listOptionValue builtIn="false" value="-rpath ${workspace_loc:/${ProjName}/libodbmysql/lib}"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.linker.input.1429807047" superClass="cdt.managedbuild.tool.gnu.cpp.linker.input">
 									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
@@ -69,7 +74,7 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
-						<entry excluding="src/utilisateur-odb.hxx|src/utilisateur-odb.cxx|src/point-odb.hxx|src/point-odb.cxx|src/mouvement-odb.hxx|src/mouvement-odb.cxx" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry excluding="src/utilisateur-odb.ixx|src/utilisateur-odb.hxx|src/utilisateur-odb.cxx|src/point-odb.hxx|src/point-odb.cxx|src/mouvement-odb.hxx|src/mouvement-odb.cxx" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>

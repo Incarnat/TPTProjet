@@ -14,7 +14,7 @@ protected:
     string marqueMachine;
     friend class odb::access;
 public:
-    Utilisateur();
+    Utilisateur(int id, string type, string marqueMachine);
 };
 #pragma db member(Utilisateur::id) id
 #endif // UTILISATEUR_H
