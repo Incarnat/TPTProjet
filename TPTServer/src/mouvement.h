@@ -3,22 +3,20 @@
 
 #include <string>
 
-#include <odb/core.hxx>
 using namespace std;
 
-#pragma db object
 class Mouvement
 {
 protected :
-#pragma db id auto
     int idMove;
     int idUser;
     string type;
     string application;
-    friend class odb::access;
 
 public:
     Mouvement();
+    Mouvement(string _type, string _application);
+    int getIdMove();
 };
 
 #endif // MOUVEMENT_H
