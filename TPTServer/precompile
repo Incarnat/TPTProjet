@@ -1,0 +1,9 @@
+#!/bin/zsh
+
+odb-compiler/bin/odb -Ilibodb -d mysql --generate-query --generate-schema --output-dir src src/utilisateur.h
+odb-compiler/bin/odb -I/cal/homes/noret/git/TPTServer/TPTServer/libodb -d mysql --generate-query --generate-schema --output-dir src src/point.h
+odb-compiler/bin/odb -I/cal/homes/noret/git/TPTServer/TPTserver/libodb -d mysql --generate-query --generate-schema --output-dir src src/mouvement.h
+c++ -c src/utilisateur-odb.cxx -I/cal/homes/noret/git/TPTServer/TPTServer/libodb/include -I/cal/homes/noret/git/TPTServer/TPTServer/libodbmysql/include
+c++ -c src/mouvement-odb.cxx -I/cal/homes/noret/git/TPTServer/TPTServer/libodb/include -I/cal/homes/noret/git/TPTServer/TPTServer/libodbmysql/include
+c++ -c src/point-odb.cxx -I/cal/homes/noret/git/TPTServer/TPTServer/libodb/include -I/cal/homes/noret/git/TPTServer/TPTServer/libodbmysql/include
+
