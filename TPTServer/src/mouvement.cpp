@@ -1,22 +1,15 @@
-#ifndef MOUVEMENT_H
-#define MOUVEMENT_H
+#include "mouvement.h"
 
-#include <string>
-
-using namespace std;
-
-class Mouvement
+Mouvement::Mouvement()
 {
-protected :
-    int idMove;
-    int idUser;
-    string type;
-    string application;
+}
 
-public:
-    Mouvement();
-    Mouvement(string _type, string _application);
-    int getIdMove();
-};
-
-#endif // MOUVEMENT_H
+Mouvement::Mouvement(string _type, string _application)
+{
+	this->type = _type;
+	this->application = _application;
+}
+int Mouvement::getIdMove()
+{
+	return this->idMove;
+}
