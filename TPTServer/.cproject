@@ -49,8 +49,8 @@
 									<listOptionValue builtIn="false" srcPrefixMapping="" srcRootPath="" value="odb-mysql"/>
 								</option>
 								<option id="gnu.cpp.link.option.userobjs.239958027" name="Other objects" superClass="gnu.cpp.link.option.userobjs" valueType="userObjs">
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/src/point-odb.o}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/src/mouvement-odb.o}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/point-odb.o}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/mouvement-odb.o}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/utilisateur-odb.o}&quot;"/>
 								</option>
 								<option id="gnu.cpp.link.option.paths.1628677420" name="Library search path (-L)" superClass="gnu.cpp.link.option.paths" valueType="libPaths">
