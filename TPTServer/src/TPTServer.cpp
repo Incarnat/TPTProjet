@@ -20,7 +20,7 @@
 
 using boost::asio::ip::tcp;
 using namespace odb::core;
-
+database* db;
 class Mysession
 {
 public:
@@ -36,7 +36,6 @@ public:
 
 	void start()
 	{
-		std::cout<<"hi"<<std::endl;
 		long int now=(long int)time(0);
 
 		outputname << now << ".zip";
@@ -70,14 +69,39 @@ private:
 			if (pID==0)
 			{
 				Unzipper* unzipper = new Unzipper();
-				//unzipper->unzip_all();
-				unzipper->unzip_one();
+				unzipper->unzip_all();
+				//unzipper->unzip_one();
 				//then dispose of .zip
+				exit(0);
 			}else if(pID>0)
 			{
 				int statut;
 				int options=0;
 				waitpid(pID,&statut,options);
+
+
+			DBWriter* dbwrite=new DBWriter();
+			FileReader* fr=new FileReader(dbwrite);
+			transaction *t =dbwrite->initTransaction(db);
+			string dir=".";
+			DIR *dp;
+
+			struct dirent *dirp;
+			if((dp  = opendir(dir.c_str())) == NULL) {
+				cout << "Error opening " << dir << endl;
+			}
+
+			while ((dirp = readdir(dp)) != NULL) {
+				if(string(dirp->d_name).find(".csv")!=string::npos){
+				fr->readFile(string(dirp->d_name));
+				remove(dirp->d_name);
+				}
+			}
+
+			//t->commit();
+			dbwrite->commit(t);
+
+			closedir(dp);
 			}
 		}
 	}
@@ -158,16 +182,11 @@ int main(int argc, char* argv[])
 
 		using namespace std; // For atoi.
 		server s(io_service, atoi(argv[1]));
-		//ODB
-		auto_ptr<database> db (new odb::mysql::database (argc, argv));
-		transaction t (db->begin ());
-		Utilisateur u(5,"false","lolbook");
-		unsigned long u_id=db->persist(u);
-		cout << u_id;
-		t.commit ();
-	//	io_service.run();
-		//FileReader* fileR=new FileReader();
-		//fileR->readFile("/cal/homes/noret/git/TPTServer/TPTServer/lol.csv");
+		auto_ptr<database> db2 (new odb::mysql::database (argc, argv));
+		//!!global
+		db=db2.release();
+
+		io_service.run();
 
 	}
 	catch (std::exception& e)

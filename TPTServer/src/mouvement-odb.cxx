@@ -48,11 +48,11 @@ namespace odb
     id_type id;
     {
       mysql::value_traits<
-          int,
-          mysql::id_long >::set_value (
+          long unsigned int,
+          mysql::id_ulonglong >::set_value (
         id,
-        i.idMove_value,
-        i.idMove_null);
+        i.ID_value,
+        i.ID_null);
     }
 
     return id;
@@ -67,17 +67,21 @@ namespace odb
 
     bool grew (false);
 
-    // idMove
+    // ID
     //
     t[0UL] = 0;
 
-    // idUser
+    // ID_user
     //
     t[1UL] = 0;
 
+    // Timestamp
+    //
+    t[2UL] = 0;
+
     // type
     //
-    if (t[2UL])
+    if (t[3UL])
     {
       i.type_value.capacity (i.type_size);
       grew = true;
@@ -85,7 +89,7 @@ namespace odb
 
     // application
     //
-    if (t[3UL])
+    if (t[4UL])
     {
       i.application_value.capacity (i.application_size);
       grew = true;
@@ -105,23 +109,31 @@ namespace odb
 
     std::size_t n (0);
 
-    // idMove
+    // ID
     //
     if (sk != statement_update)
     {
-      b[n].buffer_type = MYSQL_TYPE_LONG;
-      b[n].is_unsigned = 0;
-      b[n].buffer = &i.idMove_value;
-      b[n].is_null = &i.idMove_null;
+      b[n].buffer_type = MYSQL_TYPE_LONGLONG;
+      b[n].is_unsigned = 1;
+      b[n].buffer = &i.ID_value;
+      b[n].is_null = &i.ID_null;
       n++;
     }
 
-    // idUser
+    // ID_user
     //
-    b[n].buffer_type = MYSQL_TYPE_LONG;
-    b[n].is_unsigned = 0;
-    b[n].buffer = &i.idUser_value;
-    b[n].is_null = &i.idUser_null;
+    b[n].buffer_type = MYSQL_TYPE_LONGLONG;
+    b[n].is_unsigned = 1;
+    b[n].buffer = &i.ID_user_value;
+    b[n].is_null = &i.ID_user_null;
+    n++;
+
+    // Timestamp
+    //
+    b[n].buffer_type = MYSQL_TYPE_LONGLONG;
+    b[n].is_unsigned = 1;
+    b[n].buffer = &i.Timestamp_value;
+    b[n].is_null = &i.Timestamp_null;
     n++;
 
     // type
@@ -149,8 +161,8 @@ namespace odb
   bind (MYSQL_BIND* b, id_image_type& i)
   {
     std::size_t n (0);
-    b[n].buffer_type = MYSQL_TYPE_LONG;
-    b[n].is_unsigned = 0;
+    b[n].buffer_type = MYSQL_TYPE_LONGLONG;
+    b[n].is_unsigned = 1;
     b[n].buffer = &i.id_value;
     b[n].is_null = &i.id_null;
   }
@@ -168,33 +180,47 @@ namespace odb
 
     bool grew (false);
 
-    // idMove
+    // ID
     //
     if (sk == statement_insert)
     {
-      int const& v =
-        o.idMove;
+      long unsigned int const& v =
+        o.ID;
 
       bool is_null (false);
       mysql::value_traits<
-          int,
-          mysql::id_long >::set_image (
-        i.idMove_value, is_null, v);
-      i.idMove_null = is_null;
+          long unsigned int,
+          mysql::id_ulonglong >::set_image (
+        i.ID_value, is_null, v);
+      i.ID_null = is_null;
     }
 
-    // idUser
+    // ID_user
     //
     {
-      int const& v =
-        o.idUser;
+      long unsigned int const& v =
+        o.ID_user;
 
       bool is_null (false);
       mysql::value_traits<
-          int,
-          mysql::id_long >::set_image (
-        i.idUser_value, is_null, v);
-      i.idUser_null = is_null;
+          long unsigned int,
+          mysql::id_ulonglong >::set_image (
+        i.ID_user_value, is_null, v);
+      i.ID_user_null = is_null;
+    }
+
+    // Timestamp
+    //
+    {
+      long unsigned int const& v =
+        o.Timestamp;
+
+      bool is_null (false);
+      mysql::value_traits<
+          long unsigned int,
+          mysql::id_ulonglong >::set_image (
+        i.Timestamp_value, is_null, v);
+      i.Timestamp_null = is_null;
     }
 
     // type
@@ -251,32 +277,46 @@ namespace odb
     ODB_POTENTIALLY_UNUSED (i);
     ODB_POTENTIALLY_UNUSED (db);
 
-    // idMove
+    // ID
     //
     {
-      int& v =
-        o.idMove;
+      long unsigned int& v =
+        o.ID;
 
       mysql::value_traits<
-          int,
-          mysql::id_long >::set_value (
+          long unsigned int,
+          mysql::id_ulonglong >::set_value (
         v,
-        i.idMove_value,
-        i.idMove_null);
+        i.ID_value,
+        i.ID_null);
     }
 
-    // idUser
+    // ID_user
     //
     {
-      int& v =
-        o.idUser;
+      long unsigned int& v =
+        o.ID_user;
 
       mysql::value_traits<
-          int,
-          mysql::id_long >::set_value (
+          long unsigned int,
+          mysql::id_ulonglong >::set_value (
         v,
-        i.idUser_value,
-        i.idUser_null);
+        i.ID_user_value,
+        i.ID_user_null);
+    }
+
+    // Timestamp
+    //
+    {
+      long unsigned int& v =
+        o.Timestamp;
+
+      mysql::value_traits<
+          long unsigned int,
+          mysql::id_ulonglong >::set_value (
+        v,
+        i.Timestamp_value,
+        i.Timestamp_null);
     }
 
     // type
@@ -316,8 +356,8 @@ namespace odb
     {
       bool is_null (false);
       mysql::value_traits<
-          int,
-          mysql::id_long >::set_image (
+          long unsigned int,
+          mysql::id_ulonglong >::set_image (
         i.id_value, is_null, id);
       i.id_null = is_null;
     }
@@ -325,38 +365,42 @@ namespace odb
 
   const char access::object_traits_impl< ::Mouvement, id_mysql >::persist_statement[] =
   "INSERT INTO `Mouvement` "
-  "(`idMove`, "
-  "`idUser`, "
+  "(`ID`, "
+  "`ID_user`, "
+  "`Timestamp`, "
   "`type`, "
   "`application`) "
   "VALUES "
-  "(?, ?, ?, ?)";
+  "(?, ?, ?, ?, ?)";
 
   const char access::object_traits_impl< ::Mouvement, id_mysql >::find_statement[] =
   "SELECT "
-  "`Mouvement`.`idMove`, "
-  "`Mouvement`.`idUser`, "
+  "`Mouvement`.`ID`, "
+  "`Mouvement`.`ID_user`, "
+  "`Mouvement`.`Timestamp`, "
   "`Mouvement`.`type`, "
   "`Mouvement`.`application` "
   "FROM `Mouvement` "
-  "WHERE `Mouvement`.`idMove`=?";
+  "WHERE `Mouvement`.`ID`=?";
 
   const char access::object_traits_impl< ::Mouvement, id_mysql >::update_statement[] =
   "UPDATE `Mouvement` "
   "SET "
-  "`idUser`=?, "
+  "`ID_user`=?, "
+  "`Timestamp`=?, "
   "`type`=?, "
   "`application`=? "
-  "WHERE `idMove`=?";
+  "WHERE `ID`=?";
 
   const char access::object_traits_impl< ::Mouvement, id_mysql >::erase_statement[] =
   "DELETE FROM `Mouvement` "
-  "WHERE `idMove`=?";
+  "WHERE `ID`=?";
 
   const char access::object_traits_impl< ::Mouvement, id_mysql >::query_statement[] =
   "SELECT "
-  "`Mouvement`.`idMove`, "
-  "`Mouvement`.`idUser`, "
+  "`Mouvement`.`ID`, "
+  "`Mouvement`.`ID_user`, "
+  "`Mouvement`.`Timestamp`, "
   "`Mouvement`.`type`, "
   "`Mouvement`.`application` "
   "FROM `Mouvement`";
@@ -389,7 +433,7 @@ namespace odb
     if (init (im, obj, statement_insert))
       im.version++;
 
-    im.idMove_value = 0;
+    im.ID_value = 0;
 
     if (im.version != sts.insert_image_version () ||
         imb.version == 0)
@@ -403,7 +447,7 @@ namespace odb
     if (!st.execute ())
       throw object_already_persistent ();
 
-    obj.idMove = static_cast< id_type > (st.id ());
+    obj.ID = static_cast< id_type > (st.id ());
 
     callback (db,
               static_cast<const object_type&> (obj),
@@ -426,7 +470,7 @@ namespace odb
       conn.statement_cache ().find_object<object_type> ());
 
     const id_type& id (
-      obj.idMove);
+      obj.ID);
     id_image_type& idi (sts.id_image ());
     init (idi, id);
 
@@ -602,7 +646,7 @@ namespace odb
     statements_type::auto_lock l (sts);
 
     const id_type& id  (
-      obj.idMove);
+      obj.ID);
 
     if (!find_ (sts, &id))
       return false;

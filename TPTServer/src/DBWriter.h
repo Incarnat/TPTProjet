@@ -15,6 +15,7 @@
 #include "point.h"
 #include "point-odb.hxx"
 #include "odb.hpp"
+#include <iostream>
 #include <odb/database.hxx>
 #include <odb/transaction.hxx>
 #include <odb/mysql/database.hxx>
@@ -34,7 +35,7 @@ virtual transaction* initTransaction(database* db);
 virtual void commit(transaction* t);
 
 private:
-auto_ptr<database> db;
+database* db;
 };
 
 #endif /* DBWRITER_H_ */

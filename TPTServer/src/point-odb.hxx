@@ -51,7 +51,7 @@ namespace odb
 
     static const bool polymorphic = false;
 
-    typedef int id_type;
+    typedef long unsigned int id_type;
 
     static const bool auto_id = true;
 
@@ -91,50 +91,38 @@ namespace odb
   template <typename A>
   struct query_columns< ::Point, id_mysql, A >
   {
-    // idPoint
+    // ID
     //
     typedef
     mysql::query_column<
       mysql::value_traits<
-        int,
-        mysql::id_long >::query_type,
-      mysql::id_long >
-    idPoint_type_;
+        long unsigned int,
+        mysql::id_ulonglong >::query_type,
+      mysql::id_ulonglong >
+    ID_type_;
 
-    static const idPoint_type_ idPoint;
+    static const ID_type_ ID;
 
-    // idMove
+    // ID_mouvement
     //
     typedef
     mysql::query_column<
       mysql::value_traits<
-        int,
-        mysql::id_long >::query_type,
-      mysql::id_long >
-    idMove_type_;
+        long unsigned int,
+        mysql::id_ulonglong >::query_type,
+      mysql::id_ulonglong >
+    ID_mouvement_type_;
 
-    static const idMove_type_ idMove;
-
-    // timestamps
-    //
-    typedef
-    mysql::query_column<
-      mysql::value_traits<
-        double,
-        mysql::id_double >::query_type,
-      mysql::id_double >
-    timestamps_type_;
-
-    static const timestamps_type_ timestamps;
+    static const ID_mouvement_type_ ID_mouvement;
 
     // X
     //
     typedef
     mysql::query_column<
       mysql::value_traits<
-        double,
-        mysql::id_double >::query_type,
-      mysql::id_double >
+        int,
+        mysql::id_long >::query_type,
+      mysql::id_long >
     X_type_;
 
     static const X_type_ X;
@@ -144,14 +132,14 @@ namespace odb
     typedef
     mysql::query_column<
       mysql::value_traits<
-        double,
-        mysql::id_double >::query_type,
-      mysql::id_double >
+        int,
+        mysql::id_long >::query_type,
+      mysql::id_long >
     Y_type_;
 
     static const Y_type_ Y;
 
-    // relatifX
+    // X_relatif
     //
     typedef
     mysql::query_column<
@@ -159,11 +147,11 @@ namespace odb
         double,
         mysql::id_double >::query_type,
       mysql::id_double >
-    relatifX_type_;
+    X_relatif_type_;
 
-    static const relatifX_type_ relatifX;
+    static const X_relatif_type_ X_relatif;
 
-    // relatifY
+    // Y_relatif
     //
     typedef
     mysql::query_column<
@@ -171,25 +159,20 @@ namespace odb
         double,
         mysql::id_double >::query_type,
       mysql::id_double >
-    relatifY_type_;
+    Y_relatif_type_;
 
-    static const relatifY_type_ relatifY;
+    static const Y_relatif_type_ Y_relatif;
   };
 
   template <typename A>
-  const typename query_columns< ::Point, id_mysql, A >::idPoint_type_
+  const typename query_columns< ::Point, id_mysql, A >::ID_type_
   query_columns< ::Point, id_mysql, A >::
-  idPoint (A::table_name, "`idPoint`", 0);
+  ID (A::table_name, "`ID`", 0);
 
   template <typename A>
-  const typename query_columns< ::Point, id_mysql, A >::idMove_type_
+  const typename query_columns< ::Point, id_mysql, A >::ID_mouvement_type_
   query_columns< ::Point, id_mysql, A >::
-  idMove (A::table_name, "`idMove`", 0);
-
-  template <typename A>
-  const typename query_columns< ::Point, id_mysql, A >::timestamps_type_
-  query_columns< ::Point, id_mysql, A >::
-  timestamps (A::table_name, "`timestamps`", 0);
+  ID_mouvement (A::table_name, "`ID_mouvement`", 0);
 
   template <typename A>
   const typename query_columns< ::Point, id_mysql, A >::X_type_
@@ -202,14 +185,14 @@ namespace odb
   Y (A::table_name, "`Y`", 0);
 
   template <typename A>
-  const typename query_columns< ::Point, id_mysql, A >::relatifX_type_
+  const typename query_columns< ::Point, id_mysql, A >::X_relatif_type_
   query_columns< ::Point, id_mysql, A >::
-  relatifX (A::table_name, "`relatifX`", 0);
+  X_relatif (A::table_name, "`X_relatif`", 0);
 
   template <typename A>
-  const typename query_columns< ::Point, id_mysql, A >::relatifY_type_
+  const typename query_columns< ::Point, id_mysql, A >::Y_relatif_type_
   query_columns< ::Point, id_mysql, A >::
-  relatifY (A::table_name, "`relatifY`", 0);
+  Y_relatif (A::table_name, "`Y_relatif`", 0);
 
   template <typename A>
   struct pointer_query_columns< ::Point, id_mysql, A >:
@@ -224,7 +207,7 @@ namespace odb
     public:
     struct id_image_type
     {
-      int id_value;
+      unsigned long long id_value;
       my_bool id_null;
 
       std::size_t version;
@@ -232,40 +215,35 @@ namespace odb
 
     struct image_type
     {
-      // idPoint
+      // ID
       //
-      int idPoint_value;
-      my_bool idPoint_null;
+      unsigned long long ID_value;
+      my_bool ID_null;
 
-      // idMove
+      // ID_mouvement
       //
-      int idMove_value;
-      my_bool idMove_null;
-
-      // timestamps
-      //
-      double timestamps_value;
-      my_bool timestamps_null;
+      unsigned long long ID_mouvement_value;
+      my_bool ID_mouvement_null;
 
       // X
       //
-      double X_value;
+      int X_value;
       my_bool X_null;
 
       // Y
       //
-      double Y_value;
+      int Y_value;
       my_bool Y_null;
 
-      // relatifX
+      // X_relatif
       //
-      double relatifX_value;
-      my_bool relatifX_null;
+      double X_relatif_value;
+      my_bool X_relatif_null;
 
-      // relatifY
+      // Y_relatif
       //
-      double relatifY_value;
-      my_bool relatifY_null;
+      double Y_relatif_value;
+      my_bool Y_relatif_null;
 
       std::size_t version;
     };
@@ -306,7 +284,7 @@ namespace odb
 
     typedef mysql::query_base query_base_type;
 
-    static const std::size_t column_count = 7UL;
+    static const std::size_t column_count = 6UL;
     static const std::size_t id_column_count = 1UL;
     static const std::size_t inverse_column_count = 0UL;
     static const std::size_t readonly_column_count = 0UL;

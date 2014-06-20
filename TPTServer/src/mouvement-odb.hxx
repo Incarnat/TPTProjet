@@ -51,7 +51,7 @@ namespace odb
 
     static const bool polymorphic = false;
 
-    typedef int id_type;
+    typedef long unsigned int id_type;
 
     static const bool auto_id = true;
 
@@ -91,29 +91,41 @@ namespace odb
   template <typename A>
   struct query_columns< ::Mouvement, id_mysql, A >
   {
-    // idMove
+    // ID
     //
     typedef
     mysql::query_column<
       mysql::value_traits<
-        int,
-        mysql::id_long >::query_type,
-      mysql::id_long >
-    idMove_type_;
+        long unsigned int,
+        mysql::id_ulonglong >::query_type,
+      mysql::id_ulonglong >
+    ID_type_;
 
-    static const idMove_type_ idMove;
+    static const ID_type_ ID;
 
-    // idUser
+    // ID_user
     //
     typedef
     mysql::query_column<
       mysql::value_traits<
-        int,
-        mysql::id_long >::query_type,
-      mysql::id_long >
-    idUser_type_;
+        long unsigned int,
+        mysql::id_ulonglong >::query_type,
+      mysql::id_ulonglong >
+    ID_user_type_;
 
-    static const idUser_type_ idUser;
+    static const ID_user_type_ ID_user;
+
+    // Timestamp
+    //
+    typedef
+    mysql::query_column<
+      mysql::value_traits<
+        long unsigned int,
+        mysql::id_ulonglong >::query_type,
+      mysql::id_ulonglong >
+    Timestamp_type_;
+
+    static const Timestamp_type_ Timestamp;
 
     // type
     //
@@ -141,14 +153,19 @@ namespace odb
   };
 
   template <typename A>
-  const typename query_columns< ::Mouvement, id_mysql, A >::idMove_type_
+  const typename query_columns< ::Mouvement, id_mysql, A >::ID_type_
   query_columns< ::Mouvement, id_mysql, A >::
-  idMove (A::table_name, "`idMove`", 0);
+  ID (A::table_name, "`ID`", 0);
 
   template <typename A>
-  const typename query_columns< ::Mouvement, id_mysql, A >::idUser_type_
+  const typename query_columns< ::Mouvement, id_mysql, A >::ID_user_type_
   query_columns< ::Mouvement, id_mysql, A >::
-  idUser (A::table_name, "`idUser`", 0);
+  ID_user (A::table_name, "`ID_user`", 0);
+
+  template <typename A>
+  const typename query_columns< ::Mouvement, id_mysql, A >::Timestamp_type_
+  query_columns< ::Mouvement, id_mysql, A >::
+  Timestamp (A::table_name, "`Timestamp`", 0);
 
   template <typename A>
   const typename query_columns< ::Mouvement, id_mysql, A >::type_type_
@@ -173,7 +190,7 @@ namespace odb
     public:
     struct id_image_type
     {
-      int id_value;
+      unsigned long long id_value;
       my_bool id_null;
 
       std::size_t version;
@@ -181,15 +198,20 @@ namespace odb
 
     struct image_type
     {
-      // idMove
+      // ID
       //
-      int idMove_value;
-      my_bool idMove_null;
+      unsigned long long ID_value;
+      my_bool ID_null;
 
-      // idUser
+      // ID_user
       //
-      int idUser_value;
-      my_bool idUser_null;
+      unsigned long long ID_user_value;
+      my_bool ID_user_null;
+
+      // Timestamp
+      //
+      unsigned long long Timestamp_value;
+      my_bool Timestamp_null;
 
       // type
       //
@@ -242,7 +264,7 @@ namespace odb
 
     typedef mysql::query_base query_base_type;
 
-    static const std::size_t column_count = 4UL;
+    static const std::size_t column_count = 5UL;
     static const std::size_t id_column_count = 1UL;
     static const std::size_t inverse_column_count = 0UL;
     static const std::size_t readonly_column_count = 0UL;

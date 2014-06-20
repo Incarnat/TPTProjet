@@ -2,14 +2,18 @@
 #define MOUVEMENT_H
 
 #include <string>
-
+#include <odb/core.hxx>
 using namespace std;
 
+#pragma db object
 class Mouvement
 {
 protected :
-    int idMove;
-    int idUser;
+	 friend class odb::access;
+	#pragma db id auto
+    unsigned long ID;
+    unsigned long ID_user;
+    unsigned long Timestamp;
     string type;
     string application;
 

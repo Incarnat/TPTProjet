@@ -12,7 +12,7 @@ namespace odb
   access::object_traits< ::Mouvement >::
   id (const object_type& o)
   {
-    return o.idMove;
+    return o.ID;
   }
 
   inline

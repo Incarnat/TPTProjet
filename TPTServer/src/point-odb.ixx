@@ -12,7 +12,7 @@ namespace odb
   access::object_traits< ::Point >::
   id (const object_type& o)
   {
-    return o.idPoint;
+    return o.ID;
   }
 
   inline

@@ -11,5 +11,5 @@ Mouvement::Mouvement(string _type, string _application)
 }
 int Mouvement::getIdMove()
 {
-	return this->idMove;
+	return this->ID;
 }

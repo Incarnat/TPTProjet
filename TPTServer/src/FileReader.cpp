@@ -12,8 +12,8 @@
 #include "point.h"
 
 
-FileReader::FileReader() {
-	// TODO Auto-generated constructor stub
+FileReader::FileReader(DBWriter* dbwrite) {
+	this->dbwrite=dbwrite;
 
 }
 
@@ -26,14 +26,16 @@ void FileReader::readFile(string filename){
 	string value;
 	vector <string> line;
 
-
-
+	int i=0;
 	while ( file.good() )
 	{
+
 		getline ( file, value); // read a string until next comma: http://www.cplusplus.com/reference/string/getline/
 		line.push_back(value);
-	}
 
+	}
+	line.pop_back();
+	cout << line.size() << endl;
 	for(int unsigned i=0;i<line.size();i++)
 	{
 vector <Point*> vectPoint;
@@ -55,6 +57,7 @@ vector <Point*> vectPoint;
 		//std::cout << token << std::endl;
 
 		Mouvement *move = new Mouvement(champs[5], champs[4]);
+		dbwrite->pushMouvement(move);
 //Doit avoir un int, via une fonction spécifique.
 
 
@@ -111,6 +114,7 @@ vector <Point*> vectPoint;
 		{
 			Point *point = new Point(move->getIdMove(), vecteurX[k], vecteurY[k], vecteurXr[k], vecteurYr[k]);
 			vectPoint.push_back(point);
+			dbwrite->pushPoint(point);
 		}
 	}
 }

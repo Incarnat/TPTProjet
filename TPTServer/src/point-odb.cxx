@@ -48,11 +48,11 @@ namespace odb
     id_type id;
     {
       mysql::value_traits<
-          int,
-          mysql::id_long >::set_value (
+          long unsigned int,
+          mysql::id_ulonglong >::set_value (
         id,
-        i.idPoint_value,
-        i.idPoint_null);
+        i.ID_value,
+        i.ID_null);
     }
 
     return id;
@@ -67,33 +67,29 @@ namespace odb
 
     bool grew (false);
 
-    // idPoint
+    // ID
     //
     t[0UL] = 0;
 
-    // idMove
+    // ID_mouvement
     //
     t[1UL] = 0;
 
-    // timestamps
+    // X
     //
     t[2UL] = 0;
 
-    // X
+    // Y
     //
     t[3UL] = 0;
 
-    // Y
+    // X_relatif
     //
     t[4UL] = 0;
 
-    // relatifX
+    // Y_relatif
     //
     t[5UL] = 0;
-
-    // relatifY
-    //
-    t[6UL] = 0;
 
     return grew;
   }
@@ -109,58 +105,53 @@ namespace odb
 
     std::size_t n (0);
 
-    // idPoint
+    // ID
     //
     if (sk != statement_update)
     {
-      b[n].buffer_type = MYSQL_TYPE_LONG;
-      b[n].is_unsigned = 0;
-      b[n].buffer = &i.idPoint_value;
-      b[n].is_null = &i.idPoint_null;
+      b[n].buffer_type = MYSQL_TYPE_LONGLONG;
+      b[n].is_unsigned = 1;
+      b[n].buffer = &i.ID_value;
+      b[n].is_null = &i.ID_null;
       n++;
     }
 
-    // idMove
+    // ID_mouvement
     //
-    b[n].buffer_type = MYSQL_TYPE_LONG;
-    b[n].is_unsigned = 0;
-    b[n].buffer = &i.idMove_value;
-    b[n].is_null = &i.idMove_null;
-    n++;
-
-    // timestamps
-    //
-    b[n].buffer_type = MYSQL_TYPE_DOUBLE;
-    b[n].buffer = &i.timestamps_value;
-    b[n].is_null = &i.timestamps_null;
+    b[n].buffer_type = MYSQL_TYPE_LONGLONG;
+    b[n].is_unsigned = 1;
+    b[n].buffer = &i.ID_mouvement_value;
+    b[n].is_null = &i.ID_mouvement_null;
     n++;
 
     // X
     //
-    b[n].buffer_type = MYSQL_TYPE_DOUBLE;
+    b[n].buffer_type = MYSQL_TYPE_LONG;
+    b[n].is_unsigned = 0;
     b[n].buffer = &i.X_value;
     b[n].is_null = &i.X_null;
     n++;
 
     // Y
     //
-    b[n].buffer_type = MYSQL_TYPE_DOUBLE;
+    b[n].buffer_type = MYSQL_TYPE_LONG;
+    b[n].is_unsigned = 0;
     b[n].buffer = &i.Y_value;
     b[n].is_null = &i.Y_null;
     n++;
 
-    // relatifX
+    // X_relatif
     //
     b[n].buffer_type = MYSQL_TYPE_DOUBLE;
-    b[n].buffer = &i.relatifX_value;
-    b[n].is_null = &i.relatifX_null;
+    b[n].buffer = &i.X_relatif_value;
+    b[n].is_null = &i.X_relatif_null;
     n++;
 
-    // relatifY
+    // Y_relatif
     //
     b[n].buffer_type = MYSQL_TYPE_DOUBLE;
-    b[n].buffer = &i.relatifY_value;
-    b[n].is_null = &i.relatifY_null;
+    b[n].buffer = &i.Y_relatif_value;
+    b[n].is_null = &i.Y_relatif_null;
     n++;
   }
 
@@ -168,8 +159,8 @@ namespace odb
   bind (MYSQL_BIND* b, id_image_type& i)
   {
     std::size_t n (0);
-    b[n].buffer_type = MYSQL_TYPE_LONG;
-    b[n].is_unsigned = 0;
+    b[n].buffer_type = MYSQL_TYPE_LONGLONG;
+    b[n].is_unsigned = 1;
     b[n].buffer = &i.id_value;
     b[n].is_null = &i.id_null;
   }
@@ -187,59 +178,45 @@ namespace odb
 
     bool grew (false);
 
-    // idPoint
+    // ID
     //
     if (sk == statement_insert)
     {
-      int const& v =
-        o.idPoint;
+      long unsigned int const& v =
+        o.ID;
 
       bool is_null (false);
       mysql::value_traits<
-          int,
-          mysql::id_long >::set_image (
-        i.idPoint_value, is_null, v);
-      i.idPoint_null = is_null;
+          long unsigned int,
+          mysql::id_ulonglong >::set_image (
+        i.ID_value, is_null, v);
+      i.ID_null = is_null;
     }
 
-    // idMove
+    // ID_mouvement
     //
     {
-      int const& v =
-        o.idMove;
+      long unsigned int const& v =
+        o.ID_mouvement;
 
       bool is_null (false);
       mysql::value_traits<
-          int,
-          mysql::id_long >::set_image (
-        i.idMove_value, is_null, v);
-      i.idMove_null = is_null;
-    }
-
-    // timestamps
-    //
-    {
-      double const& v =
-        o.timestamps;
-
-      bool is_null (false);
-      mysql::value_traits<
-          double,
-          mysql::id_double >::set_image (
-        i.timestamps_value, is_null, v);
-      i.timestamps_null = is_null;
+          long unsigned int,
+          mysql::id_ulonglong >::set_image (
+        i.ID_mouvement_value, is_null, v);
+      i.ID_mouvement_null = is_null;
     }
 
     // X
     //
     {
-      double const& v =
+      int const& v =
         o.X;
 
       bool is_null (false);
       mysql::value_traits<
-          double,
-          mysql::id_double >::set_image (
+          int,
+          mysql::id_long >::set_image (
         i.X_value, is_null, v);
       i.X_null = is_null;
     }
@@ -247,43 +224,43 @@ namespace odb
     // Y
     //
     {
-      double const& v =
+      int const& v =
         o.Y;
 
       bool is_null (false);
       mysql::value_traits<
-          double,
-          mysql::id_double >::set_image (
+          int,
+          mysql::id_long >::set_image (
         i.Y_value, is_null, v);
       i.Y_null = is_null;
     }
 
-    // relatifX
+    // X_relatif
     //
     {
       double const& v =
-        o.relatifX;
+        o.X_relatif;
 
       bool is_null (false);
       mysql::value_traits<
           double,
           mysql::id_double >::set_image (
-        i.relatifX_value, is_null, v);
-      i.relatifX_null = is_null;
+        i.X_relatif_value, is_null, v);
+      i.X_relatif_null = is_null;
     }
 
-    // relatifY
+    // Y_relatif
     //
     {
       double const& v =
-        o.relatifY;
+        o.Y_relatif;
 
       bool is_null (false);
       mysql::value_traits<
           double,
           mysql::id_double >::set_image (
-        i.relatifY_value, is_null, v);
-      i.relatifY_null = is_null;
+        i.Y_relatif_value, is_null, v);
+      i.Y_relatif_null = is_null;
     }
 
     return grew;
@@ -298,57 +275,43 @@ namespace odb
     ODB_POTENTIALLY_UNUSED (i);
     ODB_POTENTIALLY_UNUSED (db);
 
-    // idPoint
+    // ID
     //
     {
-      int& v =
-        o.idPoint;
+      long unsigned int& v =
+        o.ID;
 
       mysql::value_traits<
-          int,
-          mysql::id_long >::set_value (
+          long unsigned int,
+          mysql::id_ulonglong >::set_value (
         v,
-        i.idPoint_value,
-        i.idPoint_null);
+        i.ID_value,
+        i.ID_null);
     }
 
-    // idMove
+    // ID_mouvement
     //
     {
-      int& v =
-        o.idMove;
+      long unsigned int& v =
+        o.ID_mouvement;
 
       mysql::value_traits<
-          int,
-          mysql::id_long >::set_value (
+          long unsigned int,
+          mysql::id_ulonglong >::set_value (
         v,
-        i.idMove_value,
-        i.idMove_null);
-    }
-
-    // timestamps
-    //
-    {
-      double& v =
-        o.timestamps;
-
-      mysql::value_traits<
-          double,
-          mysql::id_double >::set_value (
-        v,
-        i.timestamps_value,
-        i.timestamps_null);
+        i.ID_mouvement_value,
+        i.ID_mouvement_null);
     }
 
     // X
     //
     {
-      double& v =
+      int& v =
         o.X;
 
       mysql::value_traits<
-          double,
-          mysql::id_double >::set_value (
+          int,
+          mysql::id_long >::set_value (
         v,
         i.X_value,
         i.X_null);
@@ -357,43 +320,43 @@ namespace odb
     // Y
     //
     {
-      double& v =
+      int& v =
         o.Y;
 
       mysql::value_traits<
-          double,
-          mysql::id_double >::set_value (
+          int,
+          mysql::id_long >::set_value (
         v,
         i.Y_value,
         i.Y_null);
     }
 
-    // relatifX
+    // X_relatif
     //
     {
       double& v =
-        o.relatifX;
+        o.X_relatif;
 
       mysql::value_traits<
           double,
           mysql::id_double >::set_value (
         v,
-        i.relatifX_value,
-        i.relatifX_null);
+        i.X_relatif_value,
+        i.X_relatif_null);
     }
 
-    // relatifY
+    // Y_relatif
     //
     {
       double& v =
-        o.relatifY;
+        o.Y_relatif;
 
       mysql::value_traits<
           double,
           mysql::id_double >::set_value (
         v,
-        i.relatifY_value,
-        i.relatifY_null);
+        i.Y_relatif_value,
+        i.Y_relatif_null);
     }
   }
 
@@ -403,8 +366,8 @@ namespace odb
     {
       bool is_null (false);
       mysql::value_traits<
-          int,
-          mysql::id_long >::set_image (
+          long unsigned int,
+          mysql::id_ulonglong >::set_image (
         i.id_value, is_null, id);
       i.id_null = is_null;
     }
@@ -412,52 +375,48 @@ namespace odb
 
   const char access::object_traits_impl< ::Point, id_mysql >::persist_statement[] =
   "INSERT INTO `Point` "
-  "(`idPoint`, "
-  "`idMove`, "
-  "`timestamps`, "
+  "(`ID`, "
+  "`ID_mouvement`, "
   "`X`, "
   "`Y`, "
-  "`relatifX`, "
-  "`relatifY`) "
+  "`X_relatif`, "
+  "`Y_relatif`) "
   "VALUES "
-  "(?, ?, ?, ?, ?, ?, ?)";
+  "(?, ?, ?, ?, ?, ?)";
 
   const char access::object_traits_impl< ::Point, id_mysql >::find_statement[] =
   "SELECT "
-  "`Point`.`idPoint`, "
-  "`Point`.`idMove`, "
-  "`Point`.`timestamps`, "
+  "`Point`.`ID`, "
+  "`Point`.`ID_mouvement`, "
   "`Point`.`X`, "
   "`Point`.`Y`, "
-  "`Point`.`relatifX`, "
-  "`Point`.`relatifY` "
+  "`Point`.`X_relatif`, "
+  "`Point`.`Y_relatif` "
   "FROM `Point` "
-  "WHERE `Point`.`idPoint`=?";
+  "WHERE `Point`.`ID`=?";
 
   const char access::object_traits_impl< ::Point, id_mysql >::update_statement[] =
   "UPDATE `Point` "
   "SET "
-  "`idMove`=?, "
-  "`timestamps`=?, "
+  "`ID_mouvement`=?, "
   "`X`=?, "
   "`Y`=?, "
-  "`relatifX`=?, "
-  "`relatifY`=? "
-  "WHERE `idPoint`=?";
+  "`X_relatif`=?, "
+  "`Y_relatif`=? "
+  "WHERE `ID`=?";
 
   const char access::object_traits_impl< ::Point, id_mysql >::erase_statement[] =
   "DELETE FROM `Point` "
-  "WHERE `idPoint`=?";
+  "WHERE `ID`=?";
 
   const char access::object_traits_impl< ::Point, id_mysql >::query_statement[] =
   "SELECT "
-  "`Point`.`idPoint`, "
-  "`Point`.`idMove`, "
-  "`Point`.`timestamps`, "
+  "`Point`.`ID`, "
+  "`Point`.`ID_mouvement`, "
   "`Point`.`X`, "
   "`Point`.`Y`, "
-  "`Point`.`relatifX`, "
-  "`Point`.`relatifY` "
+  "`Point`.`X_relatif`, "
+  "`Point`.`Y_relatif` "
   "FROM `Point`";
 
   const char access::object_traits_impl< ::Point, id_mysql >::erase_query_statement[] =
@@ -488,7 +447,7 @@ namespace odb
     if (init (im, obj, statement_insert))
       im.version++;
 
-    im.idPoint_value = 0;
+    im.ID_value = 0;
 
     if (im.version != sts.insert_image_version () ||
         imb.version == 0)
@@ -502,7 +461,7 @@ namespace odb
     if (!st.execute ())
       throw object_already_persistent ();
 
-    obj.idPoint = static_cast< id_type > (st.id ());
+    obj.ID = static_cast< id_type > (st.id ());
 
     callback (db,
               static_cast<const object_type&> (obj),
@@ -525,7 +484,7 @@ namespace odb
       conn.statement_cache ().find_object<object_type> ());
 
     const id_type& id (
-      obj.idPoint);
+      obj.ID);
     id_image_type& idi (sts.id_image ());
     init (idi, id);
 
@@ -701,7 +660,7 @@ namespace odb
     statements_type::auto_lock l (sts);
 
     const id_type& id  (
-      obj.idPoint);
+      obj.ID);
 
     if (!find_ (sts, &id))
       return false;

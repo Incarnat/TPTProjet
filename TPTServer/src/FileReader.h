@@ -15,6 +15,7 @@
 #include <dirent.h>
 #include <iostream>
 #include<fstream>
+#include "DBWriter.h"
 #include "odb.hpp"
 #include "point.h"
 #include "mouvement.h"
@@ -25,8 +26,11 @@ using namespace std;
 class FileReader {
 public:
 	FileReader();
+	FileReader(DBWriter* dbwrite);
 	virtual ~FileReader();
 	virtual void readFile(string filename);
+private:
+	DBWriter* dbwrite;
 };
 
 #endif /* FILEREADER_H_ */

@@ -18,6 +18,7 @@ DBWriter::~DBWriter() {
 
 unsigned long DBWriter::pushPoint(Point* p){
 	return db->persist(p);
+
 }
 
 void DBWriter::pushPoints(vector<Point*> v){
@@ -33,11 +34,12 @@ unsigned long DBWriter::pushUtilisateur(Utilisateur* u){
 
 unsigned long DBWriter::pushMouvement(Mouvement* m){
 	return db->persist(m);
+
 }
 
 transaction* DBWriter::initTransaction(database* db){
-	auto_ptr<database> db2(db);
-	this->db=db2;
+
+	this->db=db;
 	return (new transaction (db->begin ()));
 }
 

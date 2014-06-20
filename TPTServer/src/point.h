@@ -2,19 +2,21 @@
 #define POINT_H
 
 #include <string>
-
+#include <odb/core.hxx>
 using namespace std;
 
+#pragma db object
 class Point
 {
 protected:
-    int idPoint;
-    int idMove;
-    double timestamps;
+	 friend class odb::access;
+	#pragma db id auto
+    unsigned long ID;
+    unsigned long ID_mouvement;
     int X;
     int Y;
-    double relatifX;
-    double relatifY;
+    double X_relatif;
+    double Y_relatif;
 
 public:
     Point();

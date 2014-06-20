@@ -20,6 +20,7 @@
 #include "odb.hpp"
 #include "Unzipper.h"
 #include "FileReader.h"
+#include "DBWriter.h"
 #include "utilisateur.h"
 #include "utilisateur-odb.hxx"
 
