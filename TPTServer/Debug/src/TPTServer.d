@@ -8,7 +8,7 @@ src/TPTServer.d: ../src/TPTServer.cpp ../src/TPTServer.hpp ../src/odb.hpp \
  /cal/homes/noret/git/TPTServer/TPTServer/libodb/include/odb/post.hxx \
  /cal/homes/noret/git/TPTServer/TPTServer/libodb/include/odb/details/shared-ptr-fwd.hxx \
  /cal/homes/noret/git/TPTServer/TPTServer/libodb/include/odb/details/shared-ptr/counter-type.hxx \
- ../src/Unzipper.h ../src/FileReader.h ../src/point.h ../src/mouvement.h \
+ ../src/Unzipper.h ../src/FileReader.h ../src/DBWriter.h \
  ../src/utilisateur.h ../src/utilisateur-odb.hxx \
  /cal/homes/noret/git/TPTServer/TPTServer/libodb/include/odb/version.hxx \
  /cal/homes/noret/git/TPTServer/TPTServer/libodb/include/odb/traits.hxx \
@@ -55,7 +55,9 @@ src/TPTServer.d: ../src/TPTServer.cpp ../src/TPTServer.hpp ../src/odb.hpp \
  /cal/homes/noret/git/TPTServer/TPTServer/libodbmysql/include/odb/mysql/details/conversion.hxx \
  /cal/homes/noret/git/TPTServer/TPTServer/libodbmysql/include/odb/mysql/query.ixx \
  /cal/homes/noret/git/TPTServer/TPTServer/libodbmysql/include/odb/mysql/query.txx \
- ../src/utilisateur-odb.ixx \
+ ../src/utilisateur-odb.ixx ../src/mouvement.h ../src/mouvement-odb.hxx \
+ ../src/mouvement-odb.ixx ../src/point.h ../src/point-odb.hxx \
+ ../src/point-odb.ixx \
  /cal/homes/noret/git/TPTServer/TPTServer/libodb/include/odb/database.hxx \
  /cal/homes/noret/git/TPTServer/TPTServer/libodb/include/odb/schema-version.hxx \
  /cal/homes/noret/git/TPTServer/TPTServer/libodb/include/odb/prepared-query.hxx \
@@ -119,9 +121,7 @@ src/TPTServer.d: ../src/TPTServer.cpp ../src/TPTServer.hpp ../src/odb.hpp \
 
 ../src/FileReader.h:
 
-../src/point.h:
-
-../src/mouvement.h:
+../src/DBWriter.h:
 
 ../src/utilisateur.h:
 
@@ -218,6 +218,18 @@ src/TPTServer.d: ../src/TPTServer.cpp ../src/TPTServer.hpp ../src/odb.hpp \
 /cal/homes/noret/git/TPTServer/TPTServer/libodbmysql/include/odb/mysql/query.txx:
 
 ../src/utilisateur-odb.ixx:
+
+../src/mouvement.h:
+
+../src/mouvement-odb.hxx:
+
+../src/mouvement-odb.ixx:
+
+../src/point.h:
+
+../src/point-odb.hxx:
+
+../src/point-odb.ixx:
 
 /cal/homes/noret/git/TPTServer/TPTServer/libodb/include/odb/database.hxx:
 

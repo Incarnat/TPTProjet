@@ -1,9 +1,9 @@
-#!/bin/zsh
+#!/bin/sh
 
 odb-compiler/bin/odb -Ilibodb -d mysql --generate-query --generate-schema --output-dir src src/utilisateur.h
-odb-compiler/bin/odb -I/cal/homes/noret/git/TPTServer/TPTServer/libodb -d mysql --generate-query --generate-schema --output-dir src src/point.h
-odb-compiler/bin/odb -I/cal/homes/noret/git/TPTServer/TPTserver/libodb -d mysql --generate-query --generate-schema --output-dir src src/mouvement.h
-c++ -c src/utilisateur-odb.cxx -I/cal/homes/noret/git/TPTServer/TPTServer/libodb/include -I/cal/homes/noret/git/TPTServer/TPTServer/libodbmysql/include
-c++ -c src/mouvement-odb.cxx -I/cal/homes/noret/git/TPTServer/TPTServer/libodb/include -I/cal/homes/noret/git/TPTServer/TPTServer/libodbmysql/include
-c++ -c src/point-odb.cxx -I/cal/homes/noret/git/TPTServer/TPTServer/libodb/include -I/cal/homes/noret/git/TPTServer/TPTServer/libodbmysql/include
+odb-compiler/bin/odb -Ilibodb -d mysql --generate-query --generate-schema --output-dir src src/point.h
+odb-compiler/bin/odb -Ilibodb -d mysql --generate-query --generate-schema --output-dir src src/mouvement.h
+c++ -c src/utilisateur-odb.cxx -Ilibodb/include -Ilibodbmysql/include -L"libodb/lib" -L"libodbmysql/lib" -Xlinker -rpath libodb/lib -Xlinker -rpath libodbmysql/lib
+c++ -c src/mouvement-odb.cxx -I"libodb/include" -I"libodbmysql/include" -L"libodb/lib" -L"libodbmysql/lib" -Xlinker -rpath libodb/lib -Xlinker -rpath libodbmysql/lib
+c++ -c src/point-odb.cxx -I"libodb/include" -I"libodbmysql/include" -L"libodb/lib" -L"libodbmysql/lib" -Xlinker -rpath libodb/lib -Xlinker -rpath libodbmysql/lib
 
