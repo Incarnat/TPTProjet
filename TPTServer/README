@@ -1,0 +1,6 @@
+Requiert mysql installé
+Si changement de système, il faut aussi recompiler les librairies d'odb incluses dans le projet (odb et odbmysql).
+Si différent SGBD, il faut installer la version adéquate d'odb<SGBD>
+
+Commande de lancement :
+./TPTServer 4422 --user inf380touchpad --password inf380touchpad --host mysql.tp.enst.fr --database inf380touchpad --port 3307
