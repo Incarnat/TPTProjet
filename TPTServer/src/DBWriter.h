@@ -1,6 +1,6 @@
 /*
  * DBWriter.h
- *
+ *  Deals with database related stuff, essentially writing persistent objects
  *  Created on: 17 juin 2014
  *      Author: noret
  */

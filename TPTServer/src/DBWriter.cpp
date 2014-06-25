@@ -21,7 +21,7 @@ unsigned long DBWriter::pushPoint(Point* p){
 
 }
 
-void DBWriter::pushPoints(vector<Point*> v){
+void DBWriter::pushPoints(vector<Point*> v){//not used, possible shortcut
 	for(int i=0;i<v.size();i++){
 		unsigned long u_id=db->persist(v.at(i));
 	}

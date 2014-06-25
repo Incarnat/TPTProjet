@@ -17,7 +17,7 @@ Unzipper::~Unzipper() {
 	// TODO Auto-generated destructor stub
 }
 
-void Unzipper::unzip_all() {
+void Unzipper::unzip_all() {//simply calls the unzip
 	vector<string>* files=this->get_allzip();
 	pid_t pID = fork();
 	if (pID==0)
@@ -38,7 +38,7 @@ void Unzipper::remove_all(vector<string>* files) {
 	}
 }
 
-vector<string>* Unzipper::get_allzip(){
+vector<string>* Unzipper::get_allzip(){//scans for zip
 	vector<string>* files=new vector<string>;
 	string dir=".";
 	DIR *dp;
@@ -55,7 +55,7 @@ vector<string>* Unzipper::get_allzip(){
 	return files;
 }
 
-void Unzipper::unzip_one() {
+void Unzipper::unzip_one() {//not used, unzip first only
 	vector<string>* files=this->get_allzip();
 	pid_t pID = fork();
 	if (pID==0)

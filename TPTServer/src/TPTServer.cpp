@@ -3,8 +3,9 @@
 // Author      :
 // Version     :
 // Copyright   : Your copyright notice
-// Description : Hello World in C++, Ansi-style
+// Description : Server based on boost asio sample async_echo_server
 //============================================================================
+
 
 //
 // async_tcp_echo_server.cpp
@@ -21,7 +22,8 @@
 using boost::asio::ip::tcp;
 using namespace odb::core;
 database* db;
-class Mysession
+
+class Mysession // Deals with the download of zip
 {
 public:
 	Mysession(boost::asio::io_service& io_service)
@@ -34,15 +36,15 @@ public:
 		return socket_;
 	}
 
-	void start()
+	void start() //first call after accepting a connection
 	{
-		long int now=(long int)time(0);
+		long int now=(long int)rand();
 
-		outputname << now << ".zip";
+		outputname << now << ".zip"; //in case we are downloading multiple zipfiles (from more than one connection),avoid overwrite by giving them random name
 		socket_.async_read_some(boost::asio::buffer(data_, max_length),
 				boost::bind(&Mysession::handle_read, this,
 						boost::asio::placeholders::error,
-						boost::asio::placeholders::bytes_transferred));
+						boost::asio::placeholders::bytes_transferred));//this gets some bytes then goes to handle_read
 
 	}
 private:
@@ -53,17 +55,18 @@ private:
 		if (!error)
 		{
 
-			std::ofstream outputFile(outputname.str().c_str(), std::ios_base::app);
+			std::ofstream outputFile(outputname.str().c_str(), std::ios_base::app);//to keep on writing on the same file, this uses the append option
 
 			outputFile << std::string(data_, bytes_transferred);
 			socket_.async_read_some(boost::asio::buffer(data_, max_length),
 					boost::bind(&Mysession::handle_read, this,
 							boost::asio::placeholders::error,
-							boost::asio::placeholders::bytes_transferred));
+							boost::asio::placeholders::bytes_transferred));//same as start(), but gives back to itself
 		}
 		else
 		{
 			delete this;
+			system("pause");
 			//afterwards, let's unzip what we got
 			pid_t pID = fork();
 			if (pID==0)
@@ -79,10 +82,10 @@ private:
 				int options=0;
 				waitpid(pID,&statut,options);
 
-
+				//then, the unzipped file shall be red
 			DBWriter* dbwrite=new DBWriter();
 			FileReader* fr=new FileReader(dbwrite);
-			transaction *t =dbwrite->initTransaction(db);
+			transaction *t =dbwrite->initTransaction(db);//starts connection to database
 			string dir=".";
 			DIR *dp;
 
@@ -90,23 +93,24 @@ private:
 			if((dp  = opendir(dir.c_str())) == NULL) {
 				cout << "Error opening " << dir << endl;
 			}
-
+//there might be more than one csv
 			while ((dirp = readdir(dp)) != NULL) {
-				if(string(dirp->d_name).find(".csv")!=string::npos){
-				fr->readFile(string(dirp->d_name));
+				if(string(dirp->d_name).find(".csv")!=string::npos){//if is a csv, then read and delete it.
+				system("pause");
+					fr->readFile(string(dirp->d_name));
 				remove(dirp->d_name);
 				}
 			}
-
-			//t->commit();
 			dbwrite->commit(t);
-
 			closedir(dp);
+			delete dbwrite;
+			delete fr;
+			delete t;
 			}
 		}
 	}
 
-	void handle_write(const boost::system::error_code& error)
+	void handle_write(const boost::system::error_code& error)//not used
 	{
 
 		if (!error)
@@ -129,7 +133,7 @@ private:
 	char data_[max_length];
 };
 
-class server
+class server //accepts connections
 {
 public:
 	server(boost::asio::io_service& io_service, short port)
@@ -174,7 +178,7 @@ int main(int argc, char* argv[])
 	{
 		if (argc < 2)
 		{
-			std::cerr << "Usage: async_tcp_echo_server <port>\n";
+			std::cerr << "Usage: TPTServer <port> <database configuration>\n";
 			return 1;
 		}
 

@@ -20,7 +20,7 @@ protected:
 
 public:
     Point();
-    Point(int _idMove, int _X, int _Y, double rX, double rY);
+    Point(unsigned long _idMove, int _X, int _Y, double rX, double rY);
 };
 
 #endif // POINT_H

@@ -30,13 +30,12 @@ void FileReader::readFile(string filename){
 	while ( file.good() )
 	{
 
-		getline ( file, value); // read a string until next comma: http://www.cplusplus.com/reference/string/getline/
+		getline ( file, value); // read a string until next line
 		line.push_back(value);
 
 	}
-	line.pop_back();
-	cout << line.size() << endl;
-	for(int unsigned i=0;i<line.size();i++)
+	line.pop_back();//The last element is not a proper line
+	for(int unsigned i=0;i<line.size();i++)//foreach line
 	{
 vector <Point*> vectPoint;
 
@@ -45,20 +44,17 @@ vector <Point*> vectPoint;
 		string token;
 		vector <string> champs;
 
-		while ((pos = line[i].find(delimiter)) != string::npos)
+		while ((pos = line[i].find(delimiter)) != string::npos)//tokenize
 		{
 			token = line[i].substr(0, pos);
 			champs.push_back(token);
-			//std::cout << token << std::endl;
 			line[i].erase(0, pos + delimiter.length());
 		}
 		token = line[i];
 		champs.push_back(token);
-		//std::cout << token << std::endl;
 
 		Mouvement *move = new Mouvement(champs[5], champs[4]);
-		dbwrite->pushMouvement(move);
-//Doit avoir un int, via une fonction spécifique.
+		unsigned long IDmove = dbwrite->pushMouvement(move); //this writes the move on the database,and returns the ID assigned by it, very conveniently
 
 
 		vector <int> vecteurX;
@@ -69,11 +65,10 @@ vector <Point*> vectPoint;
 
 		delimiter = ",";
 
-		while ((pos = champs[0].find(delimiter)) != string::npos)
+		while ((pos = champs[0].find(delimiter)) != string::npos)//now for each point in the line
 		{
 			token = champs[0].substr(0, pos);
 			vecteurX.push_back(atoi(token.c_str()));
-			//std::cout << token << std::endl;
 			champs[0].erase(0, pos + delimiter.length());
 		}
 		token = champs[0];
@@ -83,7 +78,6 @@ vector <Point*> vectPoint;
 		{
 			token = champs[1].substr(0, pos);
 			vecteurY.push_back(atoi(token.c_str()));
-			//std::cout << token << std::endl;
 			champs[1].erase(0, pos + delimiter.length());
 		}
 		token = champs[1];
@@ -93,7 +87,6 @@ vector <Point*> vectPoint;
 		{
 			token = champs[2].substr(0, pos);
 			vecteurXr.push_back(atof(token.c_str()));
-			//std::cout << token << std::endl;
 			champs[2].erase(0, pos + delimiter.length());
 		}
 		token = champs[2];
@@ -103,7 +96,6 @@ vector <Point*> vectPoint;
 		{
 			token = champs[3].substr(0, pos);
 			vecteurYr.push_back(atof(token.c_str()));
-			//std::cout << token << std::endl;
 			champs[3].erase(0, pos + delimiter.length());
 		}
 		token = champs[3];
@@ -112,9 +104,9 @@ vector <Point*> vectPoint;
 
 		for (int k = 0; k<vecteurX.size(); k++)
 		{
-			Point *point = new Point(move->getIdMove(), vecteurX[k], vecteurY[k], vecteurXr[k], vecteurYr[k]);
+			Point *point = new Point(IDmove, vecteurX[k], vecteurY[k], vecteurXr[k], vecteurYr[k]);
 			vectPoint.push_back(point);
-			dbwrite->pushPoint(point);
+			dbwrite->pushPoint(point);//point saved in database
 		}
 	}
 }

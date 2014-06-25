@@ -4,9 +4,9 @@ Point::Point()
 {
 }
 
-Point::Point(int _idMove, int _X, int _Y, double rX, double rY)
+Point::Point(unsigned long _idMove, int _X, int _Y, double rX, double rY)
 {
-	this->ID = _idMove;
+	this->ID_mouvement = _idMove;
 	this->X = _X;
 	this->Y = _Y;
 	this->X_relatif = rX;
