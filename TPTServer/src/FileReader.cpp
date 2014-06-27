@@ -55,7 +55,7 @@ vector <Point*> vectPoint;
 
 		Mouvement *move = new Mouvement(champs[5], champs[4]);
 		unsigned long IDmove = dbwrite->pushMouvement(move); //this writes the move on the database,and returns the ID assigned by it, very conveniently
-
+		delete move;
 
 		vector <int> vecteurX;
 		vector <int> vecteurY;
@@ -107,6 +107,7 @@ vector <Point*> vectPoint;
 			Point *point = new Point(IDmove, vecteurX[k], vecteurY[k], vecteurXr[k], vecteurYr[k]);
 			vectPoint.push_back(point);
 			dbwrite->pushPoint(point);//point saved in database
+			delete point;
 		}
 	}
 }

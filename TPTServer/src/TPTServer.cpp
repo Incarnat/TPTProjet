@@ -66,14 +66,13 @@ private:
 		else
 		{
 			delete this;
-			system("pause");
 			//afterwards, let's unzip what we got
 			pid_t pID = fork();
 			if (pID==0)
 			{
 				Unzipper* unzipper = new Unzipper();
 				unzipper->unzip_all();
-				//unzipper->unzip_one();
+				delete unzipper;
 				//then dispose of .zip
 				exit(0);
 			}else if(pID>0)
@@ -96,10 +95,11 @@ private:
 //there might be more than one csv
 			while ((dirp = readdir(dp)) != NULL) {
 				if(string(dirp->d_name).find(".csv")!=string::npos){//if is a csv, then read and delete it.
-				system("pause");
+
 					fr->readFile(string(dirp->d_name));
 				remove(dirp->d_name);
 				}
+
 			}
 			dbwrite->commit(t);
 			closedir(dp);

@@ -4,3 +4,8 @@ Si différent SGBD, il faut installer la version adéquate d'odb<SGBD>
 
 Commande de lancement :
 ./TPTServer 4422 --user inf380touchpad --password inf380touchpad --host mysql.tp.enst.fr --database inf380touchpad --port 3307
+Le premier argument est le port d'écoute (TCP), la suite est liée à la base de donnée
+
+Pour compiler après une éventuelle modification, il suffit de faire make dans le cas général, mais il est conseillé d'utiliser eclipse au moins une fois pour régénérer le makefile le cas échéant(Et mettre correctement à jour d'éventuels chemins absolus).
+
+Les classes et objets en <-odb> sont générées automatiquement (et donc à ne pas changer à la main) par le script precompile avec ./precompile à effectuer avant la compilation par make si les classes utilisateur, point, ou mouvement ont été modifiées (Ou toute classe comportant des objets à rendre persistants via odb). Il peut être nécessaire de les ignorer si on veut refaire le makefile à la main.
